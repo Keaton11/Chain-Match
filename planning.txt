@@ -1,0 +1,75 @@
+
+
+
+PLAN:
+-Users enter tournament and add money on the line (smart contract) - smart contract resolves when it knows the winner
+Play game outside of platform
+-Both users enter the scores on platform
+
+When does the chain know the winner:
+If consistent results: immediately fill smart contract, giving money to winner, winner can then go to next match or leave and take winnings
+If inconsistent results: moderator needs to intervene - then tell platform the winner (also add negative consequence for user that lied or left)
+
+-Winner then continues to next bracket or leaves with cash, loser can reenter tournament
+
+
+
+
+COMPONENTS:
+Blockchain Smart Contracts
+Rust? interacting between user and blockchain (making smart contracts)
+React UI
+Commmunication between user and server
+Server
+
+
+
+
+PARTS:
+Com - User pings server saying they want to enter match
+Ser - Server receives messages, decide matchmaking, then send to users who is in match
+Com - User receives match
+Com - User makes smart contract with Chain
+Com/UI - Some confirmation happens that both users agreed and displays to user
+----outside game happens----
+UI - Users input scores
+Com - User sends data to blockchain
+Blo/Com - block chain transfers money OR has error and contacts admin
+    Some way for admin to reconfirm and have consequence for person who caused error
+UI/Com - user can go to next match or leave, tell server if next match
+
+POSSIBILITIES FOR ADDITION:
+Equal Matches (possibility that winner streak goes against new person, just change price amounts)
+Ranking so people face people with similar strength
+Could add low risk & high risk games that have different starting wagers
+Forfeit Feature
+optimize servers search algorithm
+Way for people to set up their own server to set up their own config
+    can also add incentive to 
+
+
+
+
+CHEATING ISSUE
+Deposit, if descrepincy, then both players lose money and Deposit
+    money gets stored in blockchain (gets lost to time, if someone gets it it gives incentive for them to screw up the system)
+
+
+Possibility to add reputation thing so that there's a benefit to continue with the same wallet (and then if people commonly cause discrepencies bad stuff happens)
+    Can also degrade over time, can do seasonal stuff as well so more recent games have more weight
+
+
+
+
+
+
+SMART CONTRACT
+Continuous:
+Keeps track of active matches
+
+Execute: 
+Make matches (both people make matches that get connected to one match) - they say what level they are at?
+Confirm Scores (only once both have confirmed does the smart contract send out money)
+    If long time passes it should be considered Forfeit
+
+Query:
