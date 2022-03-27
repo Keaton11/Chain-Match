@@ -1,0 +1,233 @@
+@import url('https://fonts.googleapis.com/css2?family=Cabin:wght@700&display=swap');
+
+body {
+    background-color: black;
+    color: white;
+    height: 100vh;
+    margin: 0;
+}
+
+#home-main-container {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#home-header {
+    margin-left: 2%;
+    font-family: 'Cabin', sans-serif;
+    text-align: left;
+    transform: skew(-10deg);
+}
+
+#home-header h1 {
+    font-size: 1000%;
+    margin: 0.25em 0 0 0;
+}
+
+#home-header p {
+    font-size: 150%;
+    margin: 0 0 0 1em;
+}
+
+#home-button-container, #home-button-container a, #matching-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+    height: 100%;
+}
+
+#home-button-container a {
+    text-decoration: none;
+    width: 100%;
+}
+
+.home-button {
+    font-size: 150%;
+    font-family: 'Cabin', sans-serif;
+    background-color: white;
+    border: none;
+    padding: 0.5em 0 0.5em 0;
+    margin: 1em 0 1em 0;
+    width: 44%;
+    transform: skew(-10deg);
+}
+
+.home-button:hover {
+    background-color: gray;
+}
+
+#home-footer {
+    margin-bottom: 1em;
+    background-color: white;
+}
+
+#home-footer p {
+    font-family: 'Cabin', sans-serif;
+    text-align: center;
+    color: black;
+}
+
+#match {
+    padding-top: 19vh;
+    background-color: black;
+    font-family: 'Cabin', sans-serif;
+}
+
+#match-player1, #match-player2 {
+    height: 50vh;
+    position: relative;
+    width: calc(50% - 10em);
+}
+
+#match-player1 {
+    background-color: white;
+    float: left;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#match-player2 {
+    background-color: black;
+    float: right;
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+
+#match-player1:after, #match-player2:before {
+    content:'';
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+}
+
+#match-player1:after {
+    left: 100%;
+    border-top: 50vh solid white;
+    border-right: 20em solid transparent;
+}
+
+#match-player2:before {
+    right: 100%;
+    border-bottom: 50vh solid black;
+    border-left: 20em solid transparent;
+}
+
+#match-player1-info, #match-player2-info {
+    width: 100%;
+}
+
+#match-player1 h1 {
+    color: black;
+    text-align: center;
+    width: 100%;
+    margin: 0 0 40% 0;
+    align-self: flex-end;
+}
+
+#match-player2 h1 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    margin: 40% 0 0 0;
+    align-self: flex-start;
+}
+
+#match-button-container button{
+    margin: 1em 1em 0 1em;
+    padding: 0.2em 1em 0.2em 1em;
+    font-size: x-large;
+    font-family: 'Cabin', sans-serif;
+    border: none;
+    transform: skew(-10deg);
+}
+
+button:hover {
+    background-color: gray;
+}
+
+#battle {
+    font-family: 'Cabin', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#battle-timer {
+    background-color: white;
+    font-size: xx-large;
+    color: black;
+    text-align: center;
+    padding: 0.5em 0 0.5em 0;
+    margin-top: 2em;
+    width: 40%;
+}
+
+#battle-select-winner {
+    padding: 0.5em 1em 0.5em 1em;
+    margin-top: 3em;
+    width: 10%;
+    text-align: center;
+    justify-content: center;
+    font-family: 'Cabin', sans-serif;
+}
+
+#battle-rounds {
+    display: flex;
+    flex-direction: row; 
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
+
+#battle-rounds div {
+    margin: 3em 2em 0 2em;
+    width: 2em;
+    height: 2em;
+    border-radius: 10%;
+    background-color: white;
+}
+
+#matching-form label {
+    font-family: 'Cabin', sans-serif;
+    margin-right: 1em;
+}
+
+#matching-button {
+    margin: 2em 2em 0 2em;
+    padding: 0.5em 1em 0.5em 1em;
+    font-family: 'Cabin', sans-serif;
+    border: none;
+}
+
+#battle-chatbox {
+    margin: 3em 0 0 0;
+    width: 40%;
+    height: 100%;
+    background-color: white;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+}
+
+#battle-chatbox h2 {
+    color: black;
+}
+
+#battle-chatbox span {
+    display: flex;
+    flex-direction: row; 
+    justify-content: center;
+}
+
+#battle-chatbox div {
+    background-color: black;
+    margin: 0 1em 1em 1em;
+    width: calc(100% - 2em);
+    height: 20em;
+}
