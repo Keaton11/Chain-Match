@@ -24,7 +24,7 @@ class player():
         
         rdata = socket.recv(1024)  
         if rdata:
-            rdata = rdata.decode("utf-8")
+            rdata = rdata.decode("utf-8")     
             rdata = json.loads(rdata)
 
             if rdata.get("response"):
@@ -34,7 +34,7 @@ class player():
         deltat = time.time()
         x = 0
         match = False
-        while not match:
+        while True:
             print(f"looking for game... (elapsed {x}s)")
             dic = {"code" : 3, "address" : self.address, "id" : self.id}
             data = json.dumps(dic)
@@ -51,11 +51,23 @@ class player():
                     match = True
 
                     accept = input("accept this match? (y/n) ")
-                    if accept.lower == 'y':
+                    if accept == 'y' or accept == 'Y':
                         #accept the match- start the contract
-                        pass
+                        print("match accepted!")
+                        sdata = {"code" : 7, "address" : self.address, "id" : self.id, "opponent": opp, "note": "accept match"}
+                        sdata = json.dumps(sdata)
+                        socket.sendall(bytes(sdata, encoding="utf-8"))
+
+                        self.search_match(socket)     
                     
-                    elif accept.lower == 'n':
+                    elif accept  == 'n' or accept == 'N':
+                        #decline match
+                        print("match declined. re-entering the queue")
+                        sdata = {"code" : 5, "address" : self.address, "id" : self.id, "opponent": opp, "note": "cancel match"}
+                        sdata = json.dumps(sdata)
+                        socket.sendall(bytes(sdata, encoding="utf-8"))
+
+                        self.search_match(socket)
                          
 
                 

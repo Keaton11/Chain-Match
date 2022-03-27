@@ -28,18 +28,21 @@ class MatchServer(object):
 
         self.playerqueue = []
         self.pendingmatch = []
+        self.pendingcancel =[]
  
     def listen(self):
         self.sock.listen(5)
         while True:
             client, addr = self.sock.accept()
-            Thread(target = self.listen_new_player,args = (client,addr)).start()
+            Thread(target = self.listen_player,args = (client,addr)).start()
 
     def check_chain_score(self, player, debugscore=0):
         #send player.address to blockchain to query their score
+
+
         return debugscore
     
-    def listen_new_player(self, client, addr):
+    def listen_player(self, client, addr):
         #initial connection message
         # {"address" : addr, "id" : player01}
         while True:
@@ -70,6 +73,15 @@ class MatchServer(object):
                     print(f"player {p.id} @ {p.addr} disconnected!")
                     self.playerqueue.remove(p)
                     client.close()
+                
+                if data.get("code") == 5: #reject match
+                    opp = data.get("opponent")
+                    
+                    print(f"player {data['id']} cancelled the match.")
+                
+                if data.get("code") == 7: #accept match
+                    pass
+
 
 
         
@@ -96,6 +108,16 @@ class MatchServer(object):
                 dic = {"code": 2, "opponent": player.to_dict()}
                 data = json.dumps(dic)
                 opponent.client.sendall(bytes(data, encoding="utf-8"))
+
+                break
+
+        #done
+        print("newthread?")
+        Thread(target = self.listen_player,args = (client, player.addr)).start()
+        
+        
+        
+        
             
             
           
